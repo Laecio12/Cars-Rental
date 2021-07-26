@@ -1,15 +1,29 @@
-import { Specification } from "../model/Specification";
+import { Specification } from "../../model/Specification";
 import {
   ISpecificationRepository,
   ICreateSpecificationDTO,
-} from "./ISpecificationRepository";
+} from "../ISpecificationRepository";
 
 class SpecificationRepository implements ISpecificationRepository {
+  private specifications: Specification[];
+
   findByName(name: string): Specification {
-    throw new Error("Method not implemented.");
+    const specification = this.specifications.find(
+      (specification) => specification.name === name
+    );
+    return specification;
   }
+
   create({ name, description }: ICreateSpecificationDTO): void {
-    throw new Error("Method not implemented.");
+    const specification = new Specification();
+
+    Object.assign(specification, {
+      name,
+      description,
+      created_at: new Date(),
+    });
+
+    this.specifications.push(specification);
   }
 }
 
