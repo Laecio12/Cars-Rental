@@ -4,7 +4,6 @@ import { IUserRepository } from "../../repositories/IUserRepository";
 
 interface IRequest {
   name: string;
-  username: string;
   email: string;
   password: string;
   driver_licence: string;
@@ -18,14 +17,11 @@ class CreateUserUseCase {
 
   async execute({
     name,
-    username,
     email,
     password,
     driver_licence,
   }: IRequest): Promise<void> {
-    const userAlreadyExists = await this.userRepository.findByUsername(
-      username
-    );
+    const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
       throw new Error("User already exists!");
@@ -33,7 +29,6 @@ class CreateUserUseCase {
 
     this.userRepository.create({
       name,
-      username,
       email,
       password,
       driver_licence,
