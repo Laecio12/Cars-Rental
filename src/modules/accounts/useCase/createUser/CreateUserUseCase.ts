@@ -1,8 +1,8 @@
 import { hash } from "bcryptjs";
 import { injectable, inject } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { AppError } from "@errors/AppError";
+import { IUserRepository } from "@modules/accounts/repositories/IUserRepository";
 
 interface IRequest {
   name: string;
