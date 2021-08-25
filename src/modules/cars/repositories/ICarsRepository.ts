@@ -18,6 +18,8 @@ interface ICarsRepository {
     category_id?: string
   ): Promise<Car[]>;
   findByLicencePlate(license_plate: string): Promise<Car>;
+
+  findById(id: string): Promise<Car>;
 }
 
 export { ICarsRepository };
